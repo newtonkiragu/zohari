@@ -1,0 +1,46 @@
+{%extends "registration/base.html"%} {% load bootstrap3 %}{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+            <img src="/static/zoharilogo.jpg" alt="" height="500" width="550" style="border-radius:60px;">
+
+        </div>
+        <div class="col-md-6">
+            {% if form.errors %}
+            <p class="alert alert-danger">Some Information may be incorrect</p>
+            {% endif %}
+
+            <div class="card card-cascade animated slideInDown"  >
+                <div class="card-body card-body-cascade ">
+
+                    <h5 class="card-header  white-text text-center py-4" style="
+                    background: rgb(66,133,244);">
+                        <strong>Sign in</strong>
+                    </h5>
+                    <br>
+                    <form action="/accounts/register/" method="POST" style="color:#757575;">
+                        {% csrf_token %}
+                        {% bootstrap_form form layout='inline' %}
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-md text-center" value="Sign Up"
+                                style="text-align:center;">
+                        </div>
+                        <input type="hidden" name="next" value="{{next}}">
+                    </form>
+
+                <div class="panel panel-default text-center">
+                        <hr>
+                        <h4 class="text-center text-muted pull-left">Already have an account?</h4>
+                        <a href="/accounts/login" class="btn btn-primary btn-md text-center">Log In</a>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endblock %}
