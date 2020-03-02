@@ -3,3 +3,4 @@ virtual/
 .idea/
 .env
 Zohari.srct*
+venv/
