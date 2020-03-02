@@ -11,12 +11,12 @@ class Profile(models.Model):
     # bio = models.TextField(max_length=500,default='Tell Me Something')
     # website = models.CharField(max_length=10, blank=True,default='me.com')
     email = models.EmailField(max_length=200)
-    phone_number = models.CharField(max_length=10, default=12345678)
+    phone_number = models.CharField(max_length=10, null=True, blank=True)
 
     @receiver(post_save, sender=User)
     def create_profile(sender, instance, created, **kwargs):
         if created:
-            Profile.objects.create(user=instance)
+            Profile.objects.create(instance)
 
     @receiver(post_save, sender=User)
     def save_profile(sender, instance, **kwargs):
@@ -34,8 +34,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.title
-
-    from django.db.models.signals import post_save
 
 
 class Image(models.Model):
