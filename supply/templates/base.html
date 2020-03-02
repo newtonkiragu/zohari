@@ -12,9 +12,6 @@
     <title> ZOHARI SUPPLIES</title>
     {% endif %}
 
-    {% include 'navbar.html' %}
-
-
     {% block styles %}
     {% bootstrap_css %}
     {% endblock %}
@@ -45,7 +42,7 @@
 </head>
 
 <body>
-    {% load  %}
+    {% include 'navbar.html' %}
     {% block content %}
 
     {%endblock%}
