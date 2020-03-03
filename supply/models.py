@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 # Create your models here.
 class Profile(models.Model):
     name = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    profile_photo = models.ImageField(default='default.jpg', upload_to='profiles/')
+    profile_photo = models.ImageField(default='default.jpg', upload_to='images/profiles/')
     # bio = models.TextField(max_length=500,default='Tell Me Something')
     # website = models.CharField(max_length=10, blank=True,default='me.com')
     email = models.EmailField(max_length=200)
@@ -36,10 +36,14 @@ class Profile(models.Model):
         return self.title
 
 
-class Image(models.Model):
-    image = models.ImageField(upload_to='images/')
-    Name = models.CharField(max_length=20)
-    Description = models.CharField(max_length=45)
+class Product(models.Model):
+    images = models.ImageField(upload_to='images/product/')
+    item_name = models.CharField(max_length=20)
+    item_description = models.CharField(max_length=50)
+    item_details = models.CharField(max_length=500)
+    item_availability = models.BooleanField(default=False)
+    brand_name = models.CharField(max_length=20)
+    brand_image = models.ImageField(upload_to='images/brand/')
 
     def __str__(self):
         return self.Name
@@ -48,4 +52,4 @@ class Image(models.Model):
         return self.save()
 
     class Meta:
-        ordering = ['image']
+        ordering = ['images']
