@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Image, Profile
+from .models import Product, Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -17,7 +17,7 @@ def about(request):
 
 
 def index(request):
-    images = Image.objects.all()
+    images = Product.objects.all()
     users = User.objects.all()
 
     return render(request, 'all-supply/index.html', {"images": images}, )
