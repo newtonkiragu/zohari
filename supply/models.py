@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     profile_photo = models.ImageField(default='images/profiles/default.jpg', upload_to='images/profiles/')
-    bio = models.TextField(max_length=500,null=True, blank=True)
+    bio = models.TextField(max_length=500, null=True, blank=True)
     phone_number = models.CharField(max_length=10, unique=True)
 
     @receiver(post_save, sender=User)
@@ -34,32 +34,37 @@ class Profile(models.Model):
         return self.user.username
 
 
+class Brand(models.Model):
+    brand_name = models.CharField(max_length=20)
+    brand_image = models.ImageField(upload_to="images/brand/")
+
+    def __str__(self):
+        return self.brand_name
+
+
+class Category(models.Model):
+    category_name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.category_name
+
+
 class Product(models.Model):
-    Brands_Choices = [
-        ('addidas', ('Addidas', 'images/brand/addidas.jpeg')),
-        ('under-armour', ('Under Armour', 'images/brand/under-armour.jpeg')),
-    ]
     Product_Categories = [
-        ('balls', ('Balls', 'images/brand/balls.jpeg')),
-        ('rackets', ('Rackets', 'images/brand/rackets.jpeg')),
-        ('apparel', ('Apparel', 'images/brand/apparel.jpeg')),
+        ('Balls', 'images/brand/balls.jpeg'),
+        ('Rackets', 'images/brand/rackets.jpeg'),
+        ('Apparel', 'images/brand/apparel.jpeg'),
     ]
     images = models.ImageField(upload_to='images/product/')
     item_name = models.CharField(max_length=20)
-    item_description = models.CharField(max_length=50)
-    item_details = models.CharField(max_length=500)
+    item_description = models.CharField(max_length=200, verbose_name="Item Description")
+    item_price = models.FloatField(default=0.00)
+    slug = models.SlugField(null=True)
+    item_details = models.CharField(max_length=1000, verbose_name="Item Details")
     item_quantity = models.IntegerField(default=0)
     item_availability = models.BooleanField(default=False)
-    item_brand = models.CharField(
-        max_length=1,
-        choices=Brands_Choices,
-        null=True
-    )
-    item_categories = models.CharField(
-        max_length=1,
-        choices=Product_Categories,
-        null=True
-    )
+    item_brand = models.ForeignKey(Brand, null=True)
+    item_categories = models.ForeignKey(Category, null=True)
 
     def __str__(self):
         return self.item_name
