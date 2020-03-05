@@ -25,12 +25,13 @@ class HomePageView(ListView):
 
 @login_required(login_url='/accounts/login/')
 def profile(request, username):
-    profile = User.objects.get(username=username)
+    user = User.objects.get(username=username)
 
     try:
-        profile_details = Profile.get_by_id(profile.id)
+        profile_details = Profile.get_by_id(user.id)
     except:
-        profile_details = Profile.filter_by_id(profile.id)
+        profile_details = Profile.filter_by_id(user.id)
+    return render(request, 'registration/profile.html')
 
 
 def signup(request):
