@@ -20,7 +20,7 @@ def about(request):
 
 class HomePageView(ListView):
     model = Product
-    template_name = 'all-supply/index.html'
+    template_name = 'product/index.html'
 
 
 @login_required(login_url='/accounts/login/')
