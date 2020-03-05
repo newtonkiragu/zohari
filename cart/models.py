@@ -12,7 +12,7 @@ class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.quantity} of {self.item.name}'
+        return f'{self.quantity} of {self.item.item_name}'
 
 
 class Order(models.Model):
