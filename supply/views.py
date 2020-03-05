@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.generic import ListView
+
 from .models import Product, Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -16,11 +18,9 @@ def about(request):
     return render(request, 'about.html')
 
 
-def index(request):
-    images = Product.objects.all()
-    users = User.objects.all()
-
-    return render(request, 'all-supply/index.html', {"images": images}, )
+class HomePageView(ListView):
+    model = Product
+    template_name = 'all-supply/index.html'
 
 
 @login_required(login_url='/accounts/login/')
