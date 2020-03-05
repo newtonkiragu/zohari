@@ -78,4 +78,4 @@ def cart_view(request):
 
     else:
         messages.warning(request, "You do not have an active order")
-        return redirect("core:home")
+        return redirect("landing_page")
