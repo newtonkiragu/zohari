@@ -45,9 +45,9 @@ class Product(models.Model):
     brand_image = models.ImageField(upload_to='images/brand/')
 
     def __str__(self):
-        return self.Name
+        return self.item_name
 
-    def save_image(self):
+    def save_product(self):
         return self.save()
 
     class Meta:
