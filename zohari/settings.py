@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'supply',
     'bootstrap3',
+    'cart',
 
 ]
 
