@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url('^$', views.index, name='mainPage'),
+    url('^$', views.HomePageView.as_view(), name='landing_page'),
     url('contact', views.contact, name='contact'),
     url('about', views.about, name='about'),
     url(r'^profile/(?P<username>\w+)', views.profile, name='profile'),
