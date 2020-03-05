@@ -15,19 +15,19 @@ def add_to_cart(request, slug):
     if order_qs.exists():
         order = order_qs[0]
         # check if the order item is in the order
-        if order.orderitems.filter(item__slug=item.slug).exists():
+        if order.order_items.filter(item__slug=item.slug).exists():
             order_item.quantity += 1
             order_item.save()
             messages.info(request, "This item quantity was updated.")
             return redirect("supply:home")
         else:
-            order.orderitems.add(order_item)
+            order.order_items.add(order_item)
             messages.info(request, "This item was added to your cart.")
             return redirect("supply:home")
     else:
         order = Order.objects.create(
             user=request.user)
-        order.orderitems.add(order_item)
+        order.order_items.add(order_item)
         messages.info(request, "This item was added to your cart.")
         return redirect("supply:home")
 
@@ -50,12 +50,12 @@ def remove_from_cart(request, slug):
     if order_qs.exists():
         order = order_qs[0]
         # check if the order item is in the order
-        if order.orderitems.filter(item__slug=item.slug).exists():
+        if order.orde_ritems.filter(item__slug=item.slug).exists():
             order_item = Cart.objects.filter(
                 item=item,
                 user=request.user,
             )[0]
-            order.orderitems.remove(order_item)
+            order.order_items.remove(order_item)
             messages.info(request, "This item was removed from your cart.")
             return redirect("supply:home")
         else:
