@@ -7,38 +7,35 @@
 
     <div class="row" >
         {% for product in object_list %}
-            <!-- Card Regular -->
-            <div class="card card-cascade">
+            <div class="col-md-4 col-sm-12 col-lg-3 m-1">
+                <!-- Card Regular -->
+                <div class="card card-cascade">
 
-              <!-- Card image -->
-              <div class="view view-cascade overlay">
-                <img class="card-img-top" src="/media/{{ product.images }}" alt="{{ product.item_name }}">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
+                  <!-- Card image -->
+                  <div class="view view-cascade overlay">
+                    <img class="card-img-top" src="/media/{{ product.images }}" alt="{{ product.item_name }}">
+                    <a href="product/{{ product.slug }}">
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
 
-              <!-- Card content -->
-              <div class="card-body card-body-cascade text-center">
+                  <!-- Card content -->
+                  <div class="card-body card-body-cascade text-center">
 
-                <!-- Title -->
-                <h4 class="card-title"><strong>{{ product.item_name }}</strong></h4>
-                <!-- Subtitle -->
-                <h6 class="font-weight-bold indigo-text py-2">{{ product.brand_name }}</h6>
-                <!-- Text -->
-                <p class="card-text">
-                    {{ product.item_description }}
-                </p>
+                    <!-- Title -->
+                    <h4 class="card-title"><strong>{{ product.item_name }}</strong></h4>
+                    <!-- Subtitle -->
+                    <h6 class="font-weight-bold indigo-text py-2">{{ product.brand_name }}</h6>
+                    <!-- Text -->
+                    <p class="card-text">
+                        {{ product.item_description }}
+                    </p>
 
-                <!-- Facebook -->
-                <a type="button" class="btn-floating btn-small btn-fb"><i class="fab fa-facebook-f"></i></a>
-                <!-- Twitter -->
-                <a type="button" class="btn-floating btn-small btn-tw"><i class="fab fa-twitter"></i></a>
-                <!-- Google + -->
-                <a type="button" class="btn-floating btn-small btn-dribbble"><i class="fab fa-dribbble"></i></a>
+                  <a href="cart/{{ product.slug }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 
-              </div>
+                  </div>
 
+                </div>
             </div>
             <!-- Card Regular -->
         {% endfor %}
