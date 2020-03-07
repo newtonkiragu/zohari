@@ -57,10 +57,10 @@ class Product(models.Model):
     ]
     images = models.ImageField(upload_to='images/product/')
     item_name = models.CharField(max_length=20)
-    item_description = models.CharField(max_length=200, verbose_name="Item Description")
+    item_description = models.TextField(max_length=200, verbose_name="Item Description")
     item_price = models.FloatField(default=0.00)
     slug = models.SlugField(null=True, unique=True)
-    item_details = models.CharField(max_length=1000, verbose_name="Item Details")
+    item_details = models.TextField(max_length=1000, verbose_name="Item Details")
     item_quantity = models.IntegerField(default=0)
     item_availability = models.BooleanField(default=False)
     item_brand = models.ForeignKey(Brand, null=True)
