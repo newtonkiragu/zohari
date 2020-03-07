@@ -1,8 +1,9 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Product, Profile
 from django.contrib.auth.decorators import login_required
@@ -21,6 +22,11 @@ def about(request):
 class HomePageView(ListView):
     model = Product
     template_name = 'product/index.html'
+
+
+class ProductDetail(DetailView):
+    model = Product
+    template_name = 'product/product_detail.html'
 
 
 @login_required(login_url='/accounts/login/')
