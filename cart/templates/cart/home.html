@@ -3,13 +3,14 @@
 {% block content %}
 <div class="container my-5">
 <div class="my-5">
-	<h2>You Cart</h2>
+	<h2>Your Cart</h2>
 </div>
 <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Product Name</th>
+      <th scope="col">Product Description</th>
       <th scope="col">Quantity</th>
       <th scope="col">Price</th>
     </tr>
@@ -18,20 +19,25 @@
   	{% for cart in carts %}
     <tr>
       <th scope="row">{{ forloop.counter }}</th>
-      <td>{{ cart.item.item_name }}</td>
-      <td>{{ cart.quantity }}</td>
+      <td><a href="/product/{{ cart.item.slug }}"> {{ cart.item.item_name }}</a></td>
+      <td> {{ cart.item.item_description }}</td>
+      <td>
+        <a class="mr-2" href="{% url 'decrease-cart' cart.item.slug %}"><span class="badge badge-light"><i class="fas fa-minus"></i></span></a>
+      {{ cart.quantity }}
+      <a class="ml-2" href="{% url 'cart' cart.item.slug %}" ><span class="badge badge-light"><i class="fas fa-plus"></i></span></a>
+      </td>
       <td>${{ cart.get_total }}</td>
     </tr>
 	{% endfor %}
     <tr>
       <th scope="row"></th>
-      <td colspan="2">Total</td>
-      <td>{{ order.get_totals| floatformat }}</td>
+      <td colspan="3">Total</td>
+      <td>${{ order.get_totals| floatformat:2 }}</td>
     </tr>
     <tr>
       <th scope="row"></th>
-      <td colspan="3" class="text-right ">
-        <button class="btn btn-warning mr-4">Continue Shoping</button>
+      <td colspan="4" class="text-right ">
+        <a href="{% url 'landing_page' %}" class="btn btn-warning mr-4" >Continue Shopping</a>
         <button class="btn btn-success mr-4">Proceed To Checkout</button>
       </td>
     </tr>
