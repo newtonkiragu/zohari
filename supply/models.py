@@ -63,6 +63,8 @@ class Product(models.Model):
     item_details = models.TextField(max_length=1000, verbose_name="Item Details")
     item_quantity = models.IntegerField(default=0)
     item_availability = models.BooleanField(default=False)
+    is_item_featured = models.BooleanField(default=False)
+    is_item_recommended = models.BooleanField(default=False)
     item_brand = models.ForeignKey(Brand, null=True)
     item_categories = models.ForeignKey(Category, null=True)
 
