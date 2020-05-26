@@ -9,7 +9,7 @@ djangorestframework==3.10.3
 djangorestframework-simplejwt==4.3.0
 djoser==2.0.3
 patterns==0.3
-Pillow==6.2.0
+Pillow==6.2.2
 psycopg2-binary==2.8.4
 PyJWT==1.7.1
 python-decouple==3.3
