@@ -1,6 +1,6 @@
 codegen==1.0
 dj-database-url==0.5.0
-Django==1.11.28
+Django==1.11.29
 django-bootstrap3==11.1.0
 django-registration==1.0
 django-rest-framework==0.1.0
