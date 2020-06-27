@@ -1,0 +1,60 @@
+{% extends '../base.html' %}
+{% block content %}
+    {% include 'product/carousel.html' %}
+
+<section>
+    <div class="container">
+        <div class="row">
+        {% include 'layouts/sidepannel.html' %}
+
+
+            <div class="col-sm-9 padding-right padding-top">
+            <h1>Featured Items</h1>
+
+
+                <div class="row" >
+                    {% for product in object_list %}
+                        <div class="col-md-3">
+                            <!-- Card Regular -->
+                            <div class="card card-cascade">
+
+                              <!-- Card image -->
+                              <div class="view view-cascade overlay">
+                                  <div class="card-img-top" style="background: url({{ product.images.url }}); display: block;" alt="{{ product.item_name }}">
+
+                                  </div>
+                                <a href="product/{{ product.slug }}">
+                                  <div class="mask rgba-white-slight"></div>
+                                </a>
+                              </div>
+
+                              <!-- Card content -->
+                              <div class="card-body card-body-cascade text-center">
+
+                                <!-- Title -->
+                                <h4 class="card-title"><strong>{{ product.item_name }}</strong></h4>
+                                <!-- Subtitle -->
+                                <h6 class="font-weight-bold indigo-text py-2">{{ product.brand_name }}</h6>
+                                <!-- Text -->
+                                <p class="card-text">
+                                    {{ product.item_description }}
+                                </p>
+
+                              <a href="cart/{{ product.slug }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+
+                              </div>
+
+                            </div>
+                        </div>
+                        <!-- Card Regular -->
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
+

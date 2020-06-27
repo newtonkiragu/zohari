@@ -50,11 +50,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    Product_Categories = [
-        ('Balls', 'images/brand/balls.jpeg'),
-        ('Rackets', 'images/brand/rackets.jpeg'),
-        ('Apparel', 'images/brand/apparel.jpeg'),
-    ]
     images = models.ImageField(upload_to='images/product/')
     item_name = models.CharField(max_length=20)
     item_description = models.TextField(max_length=200, verbose_name="Item Description")
@@ -65,6 +60,7 @@ class Product(models.Model):
     item_availability = models.BooleanField(default=False)
     is_item_featured = models.BooleanField(default=False)
     is_item_recommended = models.BooleanField(default=False)
+    # Todo: add Is On Carousel Filter
     item_brand = models.ForeignKey(Brand, null=True)
     item_categories = models.ForeignKey(Category, null=True)
 

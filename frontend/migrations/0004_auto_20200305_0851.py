@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('supply', '0003_auto_20200305_0829'),
+        ('frontend', '0003_auto_20200305_0829'),
     ]
 
     operations = [
@@ -41,12 +41,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='product',
             name='item_brand',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='supply.Brand'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='frontend.Brand'),
         ),
         migrations.AlterField(
             model_name='product',
             name='item_categories',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='supply.Category'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='frontend.Category'),
         ),
         migrations.AlterField(
             model_name='product',

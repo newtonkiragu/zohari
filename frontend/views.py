@@ -37,7 +37,7 @@ def profile(request, username):
         profile_details = Profile.get_by_id(user.id)
     except:
         profile_details = Profile.filter_by_id(user.id)
-    return render(request, 'registration/profile.html')
+    return render(request, 'registration/profile.html', {"object": user})
 
 
 def signup(request):
