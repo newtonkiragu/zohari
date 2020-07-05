@@ -20,10 +20,10 @@ from django.conf.urls.static import static
 from django.contrib.auth import views
 
 urlpatterns = [
-    url(r'^django-admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
     url(r'', include('frontend.urls')),
     url(r'', include('cart.urls')),
-    url(r'^admin/', include('admin.urls')),
+    url(r'^dashboard/', include('dashboard.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^logout/$', views.logout, {"next_page": '/'}),
 ]
