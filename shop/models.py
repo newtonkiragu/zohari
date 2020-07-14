@@ -5,6 +5,10 @@ from django.db.models.signals import post_save
 
 
 # Create your models here.
+from imagekit.models import ImageSpecField
+from pilkit.processors import ResizeToFill
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     profile_photo = models.ImageField(default='images/profiles/default.jpg', upload_to='images/profiles/')
@@ -49,8 +53,12 @@ class Category(models.Model):
         return self.category_name
 
 
+class Images(models.Model):
+    image = models.ImageField(upload_to='images/product/')
+    thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(100, 50)], format='JPEG')
+
+
 class Product(models.Model):
-    images = models.ImageField(upload_to='images/product/')
     item_name = models.CharField(max_length=20)
     item_description = models.TextField(max_length=200, verbose_name="Item Description")
     item_price = models.FloatField(default=0.00)
@@ -63,6 +71,7 @@ class Product(models.Model):
     # Todo: add Is On Carousel Filter
     item_brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE)
     item_categories = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
+    item_images = models.ForeignKey(Images, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.item_name
