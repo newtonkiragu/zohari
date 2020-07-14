@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth import views
 from django.urls import path, include
 
 from core import settings
@@ -27,7 +26,6 @@ urlpatterns = [
     url(r'', include('cart.urls')),
     url(r'^dashboard/', include('dashboard.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^logout/$', views.logout, {"next_page": '/'}),
 ]
 
 if settings.DEBUG:
