@@ -1,1 +1,1 @@
-web: core.wsgi --log-file -
+web: core.wsgi
