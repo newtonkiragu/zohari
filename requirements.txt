@@ -3,7 +3,7 @@ asgiref==3.2.10
 billiard==3.6.3.0
 celery==4.4.6
 confusable-homoglyphs==3.2.0
-Django==2.2
+Django==2.2.13
 django-appconf==1.0.4
 django-imagekit==4.0.2
 django-registration==3.1
