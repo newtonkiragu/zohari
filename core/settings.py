@@ -25,7 +25,7 @@ SECRET_KEY = '^1)elza70vz=b5r8b=o#u4l+(2jxfogfy!san&bvxlj!qhwjy0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = "*"
 
 
 # Application definition
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'shop',
     'imagekit',
     'celery',
-    'redis'
+    'redis',
 ]
 
 MIDDLEWARE = [
