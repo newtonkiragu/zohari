@@ -2,133 +2,148 @@
 {% block content %}
 
 <style>
-    /* Copy this code in your css file. */
+  body {
+    background-color: #dde5e8;
+  }
+  .container {
+    height: 100%;
+    align-content: center;
+  }
 
-html,body
-{
-    width: 500px;
-    margin: auto;
-}
-.container
-{
-    width: 500px;
-    margin: 20px auto;
-}
+  .card {
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 600px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+  }
 
-.preview
-{
-    padding: 10px;
-    position: relative;
-}
+  .social_icon span {
+    font-size: 60px;
+    margin-left: 10px;
+    color: #dde5e8;
+  }
 
-.preview i
-{
+  .social_icon span:hover {
     color: white;
-    font-size: 35px;
-    transform: translate(50px,130px);
-}
+    cursor: pointer;
+  }
 
-.preview-img
-{
-    border-radius: 100%;
-    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.7);
-}
+  .card-header h3 {
+    color: white;
+  }
 
-.browse-button
-{
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    position: absolute; /* Tweak the position property if the element seems to be unfit */
-    top: 10px;
-    left: 132px;
-    background: linear-gradient(180deg, transparent, black);
-    opacity: 0;
-    transition: 0.3s ease;
-}
+  .social_icon {
+    position: absolute;
+    right: 20px;
+    top: -45px;
+  }
 
-.browse-button:hover
-{
-    opacity: 1;
-}
+  .input-group-prepend span {
+    width: 50px;
+    background-color: #dde5e8;
+    color: black;
+    border: 0 !important;
+  }
 
-.browse-input
-{
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    transform: translate(-1px,-26px);
-    opacity: 0;
-}
+  input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
 
-.form-group
-{
-    width:  250px;
-    margin: 10px auto;
-}
+  }
 
-.form-group input
-{
-    transition: 0.3s linear;
-}
+  .remember {
+    color: white;
+  }
 
-.form-group input:focus
-{
-    border: 1px solid crimson;
-    box-shadow: 0 0 0 0;
-}
+  .remember input {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+  }
 
-.Error
-{
-    color: crimson;
-    font-size: 13px;
-}
+  .login_btn {
+    color: black;
+    background-color: #2f7dfc;
+    width: 100px;
+  }
 
-.Back
-{
-    font-size: 25px;
-}
+  .login_btn:hover {
+    color: black;
+    background-color: white;
+  }
+
+  .links {
+    color: white;
+  }
+
+  .links a {
+    margin-left: 4px;
+    color: #dde5e8;
+  }
+
+  .links a:hover {
+    margin-left: 4px;
+    color: black;
+  }
 </style>
-<div class="container">
-    <div class="Back">
-         <i class="fa fa-arrow-left" onclick="Back()"></i>
-     </div>
-     <p class="h2 text-center">Form</p>
-     <form action="" method="post">
-         <div class="preview text-center">
-             <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="200"/>
-             <div class="browse-button">
-                 <i class="fa fa-pencil-alt"></i>
-                 <input class="browse-input" type="file" required name="UploadedFile" id="UploadedFile"/>
-             </div>
-             <span class="Error"></span>
-         </div>
-         <div class="form-group">
-             <label>Full Name:</label>
-             <input class="form-control" type="text" name="fullname" required placeholder="Enter Your Full Name"/>
-             <span class="Error"></span>
-         </div>
-         <div class="form-group">
-             <label>Email:</label>
-             <input class="form-control" type="email" name="email" required placeholder="Enter Your Email"/>
-             <span class="Error"></span>
-         </div>
-         <div class="form-group">
-             <label>Password:</label>
-             <input class="form-control" type="password" name="password" required placeholder="Enter Password"/>
-             <span class="Error"></span>
-         </div>
-         <div class="form-group">
-             <label>Gender:</label><br/>
-             <label><input type="radio" name="gender" required value="Male" checked /> Male</label>
-             <label><input type="radio" name="gender" required value="Female" /> Female</label>
-             <label><input type="radio" name="gender" required value="Other" /> Other</label>
-             <span class="Error"></span>
-         </div>
-         <div class="form-group">
-             <input class="btn btn-primary btn-block" type="submit" value="Submit"/>
-         </div>
-     </form>
- </div>
 
- {% endblock %}
+
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <h3>Sign Up</h3>
+  
+        </div>
+        <div class="card-body">
+          {{ form.non_field_errors }}
+          <form method="POST">
+            {% csrf_token %}
+  
+            <div class="input-group form-group">
+                <h3>username</h3>
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              {{ form.username }}
+              {{ form.username.errors }}
+  
+            </div>
+            <div class="input-group form-group">
+                <h3>Password</h3>
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              {{ form.password1 }}
+              {{ form.password1.errors }}
+            </div>
+
+            <div class="input-group form-group">
+                <h3>Password again</h3>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+              </div>
+            <!-- <div class="row align-items-center remember">
+                          <input type="checkbox">Remember Me
+                      </div> -->
+            <div class="form-group">
+              <input type="submit" value="Sign Up" class="btn float-right login_btn">
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-center links">
+            Already have an account?<a href="{% url 'login' %}">Log In</a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
