@@ -27,6 +27,11 @@ class ProductDetail(DetailView):
     template_name = 'product/product_detail.html'
 
 
+class ProductListView(ListView):
+    model = Product
+    template_name = 'product/product_list.html'
+
+
 @login_required(login_url='/accounts/login/')
 def profile(request, username):
     user = User.objects.get(username=username)
@@ -57,9 +62,10 @@ class SearchResultsView(ListView):
     model = Product
     template_name = 'search_results.html'
 
-    def get_queryset(self): # new
+    def get_queryset(self):  # new
         query = self.request.GET.get('q')
         object_list = Product.objects.filter(
-            Q(item_name__icontains=query) | Q(item_description__icontains=query)
+            Q(item_name__icontains=query) | Q(
+                item_description__icontains=query)
         )
         return object_list
