@@ -3,17 +3,18 @@
     <div class="row align-items-center justify-content-center">
       <div class="col-lg-11">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="navbar-brand" href="{% url 'landing_page' %}""> Zohari Suppliers </a>
             <!-- <a class=" navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a> -->
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="menu_icon"><i class="fas fa-bars"></i></span>
           </button>
+          <a class="navbar-brand" href="{% url 'landing_page' %}"> Zohari Suppliers </a>
+
           <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">Shop</a>
+                <a class="nav-link" href="{% url 'product-list' %}">Shop</a>
               </li>
 
               <li class="nav-item">
@@ -45,7 +46,7 @@
                   </a>
                   <a class="dropdown-item" href="tracking.html">tracking</a>
                   <a class="dropdown-item" href="checkout.html">product checkout</a>
-                  <a class="dropdown-item" href="{% url 'about' %}">shopping cart</a>
+                  <a class="dropdown-item" href="{% url 'cart-home' %}">shopping cart</a>
                   <a class="dropdown-item" href="confirmation.html">confirmation</a>
                   <a class="dropdown-item" href="elements.html">elements</a>
                 </div>
