@@ -11,7 +11,8 @@ from pilkit.processors import ResizeToFill
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
-    profile_photo = models.ImageField(default='images/profiles/default.jpg', upload_to='images/profiles/')
+    profile_photo = models.ImageField(
+        default='images/profiles/default.jpg', upload_to='images/profiles/')
     bio = models.TextField(max_length=500, null=True, blank=True)
     phone_number = models.CharField(max_length=10, unique=True)
 
@@ -53,25 +54,24 @@ class Category(models.Model):
         return self.category_name
 
 
-class Images(models.Model):
-    image = models.ImageField(upload_to='images/product/')
-    thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(100, 50)], format='JPEG')
-
-
 class Product(models.Model):
     item_name = models.CharField(max_length=20)
-    item_description = models.TextField(max_length=200, verbose_name="Item Description")
+    item_description = models.TextField(
+        max_length=200, verbose_name="Item Description")
     item_price = models.FloatField(default=0.00)
     slug = models.SlugField(null=True, unique=True)
-    item_details = models.TextField(max_length=1000, verbose_name="Item Details")
+    item_details = models.TextField(
+        max_length=1000, verbose_name="Item Details")
     item_quantity = models.IntegerField(default=0)
     item_availability = models.BooleanField(default=False)
     is_item_featured = models.BooleanField(default=False)
     is_item_recommended = models.BooleanField(default=False)
     # Todo: add Is On Carousel Filter
     item_brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE)
-    item_categories = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
-    item_images = models.ForeignKey(Images, null=True, on_delete=models.CASCADE)
+    item_categories = models.ForeignKey(
+        Category, null=True, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/product/',
+                              default="images/product/image-placeholder-500x500.jpg")
 
     def __str__(self):
         return self.item_name

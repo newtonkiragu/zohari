@@ -41,11 +41,11 @@
                         <li><a href="product/{{ product.slug }}" data-tip="Quick View"><i class="fa fa-eye"></i></a>
                         </li>
                     </ul>
-                    <a class="add-to-cart" href=""><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                    <a class="add-to-cart" href="{% url 'add-to-cart' product.slug %}"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">Women's Yellow Top</a></h3>
-                    <span class="price">$699.99</span>
+                    <h3 class="title"><a href="#">{{ product.item_name }}</a></h3>
+                    <span class="price">Kshs. {{ product.item_price }}</span>
                 </div>
             </div>
         </div>
