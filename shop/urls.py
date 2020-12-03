@@ -17,5 +17,6 @@ urlpatterns = [
     url('cart/decrease/(?P<slug>.+)$', decrease_cart, name='decrease-cart'),
     url(r'^remove/(?P<slug>.+)$', remove_from_cart, name='remove-cart'),
     url('search/', views.SearchResultsView.as_view(), name='search_results'),
+    url('shop/', views.ProductListView.as_view(), name="product-list")
 ]
 
