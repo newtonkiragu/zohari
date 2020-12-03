@@ -1,9 +1,11 @@
+{% load cart_total %}
+
 <header class="main_menu home_menu">
   <div class="container-fluid">
     <div class="row align-items-center justify-content-center">
       <div class="col-lg-11">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <!-- <a class=" navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a> -->
+          <!-- <a class=" navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a> -->
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +14,7 @@
           <a class="navbar-brand" href="{% url 'landing_page' %}"> Zohari Suppliers </a>
 
           <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'product-list' %}">Shop</a>
               </li>
@@ -35,36 +37,40 @@
                   <a class="dropdown-item" href="single-product.html">product details</a>
                 </div>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3" role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  pages
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                  <a class="dropdown-item" href="{% url 'login' %}?next={{request.path}}">
-                    login
-                  </a>
-                  <a class="dropdown-item" href="tracking.html">tracking</a>
-                  <a class="dropdown-item" href="checkout.html">product checkout</a>
-                  <a class="dropdown-item" href="{% url 'cart-home' %}">shopping cart</a>
-                  <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                  <a class="dropdown-item" href="elements.html">elements</a>
-                </div>
+              {% if user.is_authenticated %}
+
+              <li class="nav-item">
+                <a class="nav-link" href="/d">
+                  Admin</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="{% url 'profile' username=user %}">
+                  Profile</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'cart-home' %}">
+                  <i class="fa fa-shopping-cart"></i> Cart
+                  <span class="badge badge-light">{{ request.user| cart_total }}</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout/">
+                  Log Out</a>
+              </li>
+              {% else %}
+              <li class="nav-item active">
+                <a class="nav-link" href="accounts/login">
+                  Login/Register
+                </a>
+              </li>
+              {% endif %}
             </ul>
           </div>
-          <div class="hearer_icon d-flex">
-            <div class="dropdown cart">
-              <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="ti-bag"></i>
-              </a>
 
-            </div>
+
+          <div class="hearer_icon d-flex">
+            
             <a id="search_1" href="#" onclick="toggle('search_input_box')"><i class="ti-search"></i></a>
           </div>
         </nav>

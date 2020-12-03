@@ -84,7 +84,7 @@ def remove_from_cart(request, slug):
     if order_qs.exists():
         order = order_qs[0]
         # check if the order item is in the order
-        if order.orde_ritems.filter(item__slug=item.slug).exists():
+        if order.order_items.filter(item__slug=item.slug).exists():
             order_item = Cart.objects.filter(
                 item=item,
                 user=request.user,
@@ -93,7 +93,7 @@ def remove_from_cart(request, slug):
             messages.info(request, f"This {item.item_name} was removed from your cart.")
             return redirect("landing_page")
         else:
-            messages.info(request, f"This {item.item_name} was not in your cart")
+            messages.info(request, f"This {item.item_name} was removed from your cart")
             return redirect("landing_page")
     else:
         messages.info(request, "You do not have an active order")
