@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 from .models import Product, Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 
 # Create your views here.
@@ -50,3 +51,15 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/registration_form.html', {'form': form})
+
+
+class SearchResultsView(ListView):
+    model = Product
+    template_name = 'search_results.html'
+
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        object_list = Product.objects.filter(
+            Q(item_name__icontains=query) | Q(item_description__icontains=query)
+        )
+        return object_list
