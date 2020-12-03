@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+
+
+    <h1>View Our Products</h1>
+    <nav class="product-filter">
+
+        <h1>Our Products</h1>
+
+        <div class="sort">
+
+            <div class="collection-sort">
+                <label>Filter by:</label>
+                <select>
+                    <option value="/">All Jackets</option>
+                </select>
+            </div>
+
+            <div class="collection-sort">
+                <label>Sort by:</label>
+                <select>
+                    <option value="/">Featured</option>
+                </select>
+            </div>
+
+        </div>
+
+    </nav>
+    <div class="row">
+
+        {% for product in object_list %}
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid2">
+                <div class="product-image2">
+                    <a href="product/{{ product.slug }}">
+                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-3.jpeg">
+                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-4.jpeg">
+                    </a>
+                    <ul class="social">
+                        <li><a href="product/{{ product.slug }}" data-tip="Quick View"><i class="fa fa-eye"></i></a>
+                        </li>
+                    </ul>
+                    <a class="add-to-cart" href=""><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Women's Yellow Top</a></h3>
+                    <span class="price">$699.99</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock%}
