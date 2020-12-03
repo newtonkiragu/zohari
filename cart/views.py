@@ -109,7 +109,7 @@ def cart_view(request):
 
     if carts.exists():
         order = orders[0]
-        return render(request, 'cart/home.html', {"carts": carts, 'order': order})
+        return render(request, 'home.html', {"carts": carts, 'order': order})
 
     else:
         messages.warning(request, "You do not have an active order")
