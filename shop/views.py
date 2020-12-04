@@ -107,7 +107,7 @@ class SignUpView(View):
         if form.is_valid():
                 
             user = form.save(commit=False)
-            user.is_active = False # Deactivate account till it is confirmed
+            user.is_active = True # Deactivate account till it is confirmed. Set to True for now, default should be false
             user.save()
 
             current_site = get_current_site(request)
