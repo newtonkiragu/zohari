@@ -28,6 +28,7 @@
         <link href="{% static 'css/slick.css' %}" rel="stylesheet">
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
         <link href="{% static 'css/product_list.css' %}" rel="stylesheet">
+        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
 
     {% endblock %}
 
@@ -52,6 +53,8 @@
     {% block content %}
 
     {%endblock%}
+
+    {% include 'layouts/footer.html' %}
 
     {% block scripts %}
 

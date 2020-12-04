@@ -12,3 +12,14 @@ def cart_total(user):
         return order[0].order_items.count()
     else:
         return 0
+
+
+@register.filter
+def category_lists():
+    category = Category.objects.all()
+
+    if category.exists():
+        return category
+    else:
+        return "No Categories found"
+

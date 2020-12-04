@@ -14,6 +14,6 @@ def category_lists():
         return "No Categories found"
 
 
-@register.filter
-def category_product_filter():
-    pass
+# @register.filter
+# def category_product_filter():
+#     pass

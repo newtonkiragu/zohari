@@ -1,99 +1,93 @@
-{% load cart_total %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-<header class="main_menu home_menu">
-  <div class="container-fluid">
-    <div class="row align-items-center justify-content-center">
-      <div class="col-lg-11">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <!-- <a class=" navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a> -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="menu_icon"><i class="fas fa-bars"></i></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'landing_page' %}"> Zohari Suppliers </a>
+    {% if title %}
+    <title>ZOHARI SUPPLIES - {{title}}</title>
+    {% else %}
+    <title> ZOHARI SUPPLIES</title>
+    {% endif %}
 
-          <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'product-list' %}">Shop</a>
-              </li>
+    {% block styles %}
+        <!-- Bootstrap -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Custom Styles -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+        <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/all.css' %}" rel="stylesheet">
+        <link href="{% static 'css/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'css/themify-icons.css' %}" rel="stylesheet">
+        <link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet">
+        <link href="{% static 'css/slick.css' %}" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'css/product_list.css' %}" rel="stylesheet">
+        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
-              </li>
+    {% endblock %}
 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-              </li>
 
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1" role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Shop
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                  <a class="dropdown-item" href="category.html"> shop category</a>
-                  <a class="dropdown-item" href="single-product.html">product details</a>
+</head>
+
+<body>
+    {% include 'layouts/navbar.html' %}
+    {% if messages %}
+        <div class="messages container mt-2">
+            {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{ message.tags }}{% endif %}" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-              </li>
-              {% if user.is_authenticated %}
+            {% endfor %}
+        </div>
+    {% endif %}
 
-              <li class="nav-item">
-                <a class="nav-link" href="/d">
-                  Admin</a>
-              </li>
+    {% block content %}
 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'profile' username=user %}">
-                  Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'cart-home' %}">
-                  <i class="fa fa-shopping-cart"></i> Cart
-                  <span class="badge badge-light">{{ request.user| cart_total }}</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/logout/">
-                  Log Out</a>
-              </li>
-              {% else %}
-              <li class="nav-item active">
-                <a class="nav-link" href="accounts/login">
-                  Login/Register
-                </a>
-              </li>
-              {% endif %}
-            </ul>
-          </div>
+    {%endblock%}
 
+    {% include 'layouts/footer.html' %}
 
-          <div class="hearer_icon d-flex">
-            
-            <a id="search_1" href="#" onclick="toggle('search_input_box')"><i class="ti-search"></i></a>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </div>
-  <div class="search_input" id="search_input_box" style="display: none;">
-    <div class="container ">
-      <form class="d-flex justify-content-between search-inner" action="{% url 'search_results' %}" method="get">
-        <input type="text" class="form-control" id="search_input" placeholder="Search Here" name="q">
-        <button type="submit" class="btn"></button>
-        <span class="ti-close" id="close_search" title="Close Search" onclick="toggle('search_input_box')"></span>
-      </form>
-    </div>
-  </div>
-</header>
-<script language="JavaScript">
-  function toggle(id) {
-    var state = document.getElementById(id).style.display;
-    if (state == 'block') {
-      document.getElementById(id).style.display = 'none';
-    } else {
-      document.getElementById(id).style.display = 'block';
-    }
-  } 
-</script>
+    {% block scripts %}
+
+        <!-- jQuery -->
+        <script src="{% static 'js/jquery-1.12.1.min.js' %}"></script>
+        <!-- Popper.js -->
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <!-- Bootstrap -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- Custom Scripts -->
+        <script src="{% static 'js/jquery.magnific-popup.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/swiper.min.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/mixitup.min.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/jquery.nice-select.min.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/slick.min.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/jquery.counterup.min.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/waypoints.min.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/contact.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/jquery.ajaxchimp.min.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/jquery.form.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/jquery.validate.min.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/mail-script.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/custom.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/rocket-loader.min.js' %}" type="1e3b28d619e1140858d3c390-text/javascript"></script>
+        <script src="{% static 'js/wow.min.js' %}"></script>
+
+        <script>
+            new WOW().init();
+        </script>
+
+    {% endblock %}
+
+</body>
+
+</html>

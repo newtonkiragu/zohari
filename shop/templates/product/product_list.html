@@ -7,7 +7,7 @@
 
         <h1>Our Products</h1>
 
-        <div class="sort">
+        <!-- <div class="sort">
 
             <div class="collection-sort">
                 <label>Filter by:</label>
@@ -18,12 +18,17 @@
 
             <div class="collection-sort">
                 <label>Sort by:</label>
+                {% if category_lists %}
+                {% for category in category_lists %}
                 <select>
-                    <option value="/">Featured</option>
+                    <option value="/">{{ category }}</option>
                 </select>
+                {% endfor %}
+                {% endif %}
+
             </div>
 
-        </div>
+        </div> -->
 
     </nav>
     <div class="row">
