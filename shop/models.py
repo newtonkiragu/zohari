@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 # Create your models here.
 from imagekit.models import ImageSpecField
 from pilkit.processors import ResizeToFill
+from django.urls import reverse
 
 
 class Profile(models.Model):
@@ -14,7 +15,8 @@ class Profile(models.Model):
     profile_photo = models.ImageField(
         default='images/profiles/default.jpg', upload_to='images/profiles/')
     bio = models.TextField(max_length=500, null=True, blank=True)
-    phone_number = models.CharField(max_length=10, unique=True)
+    phone_number = models.CharField(max_length=10)
+    email_confirmed = models.BooleanField(default=False)
 
     @receiver(post_save, sender=User)
     def create_profile(sender, instance, created, **kwargs):
@@ -70,8 +72,11 @@ class Product(models.Model):
     item_brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE)
     item_categories = models.ForeignKey(
         Category, null=True, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images/product/',
-                              default="images/product/image-placeholder-500x500.jpg")
+    item_image = models.ImageField(upload_to='images/product/',
+                                   default="images/product/image-placeholder-500x500.jpg")
+
+    def get_absolute_url(self):
+        return reverse('product-detail', args=[self.slug])
 
     def __str__(self):
         return self.item_name
