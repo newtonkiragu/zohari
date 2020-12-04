@@ -1,11 +1,19 @@
 {% load cart_total %}
+{% load static %}
+<style>
+  @media screen and (max-width:995px) {
 
+.pc {
+  display: none;
+}
+}
+</style>
 <header class="main_menu home_menu">
   <div class="container-fluid">
     <div class="row align-items-center justify-content-center">
       <div class="col-lg-11">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <!-- <a class=" navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a> -->
+          <a class=" navbar-brand pc" href="{% url 'landing_page' %}"> <img src="{% static 'img/zohari_logo.jpeg' %}" alt="logo" width="100px;"> </a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
