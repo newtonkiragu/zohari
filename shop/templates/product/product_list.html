@@ -37,7 +37,7 @@
         <div class="col-md-3 col-sm-6">
             <div class="product-grid4">
               <div class="product-image4">
-                <a href="">
+                <a href="{% url 'product-detail' product.slug %}">
                   <!-- <img src="{{ product.item_brand.brand_image.url }}" alt="{{ product.item_brand.brand_name }}" width="30px"> -->
   
                   <img class="pic-1" src="{{ product.item_image.url }}" alt="{{ product.item_name }}">
