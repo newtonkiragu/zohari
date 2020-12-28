@@ -20,17 +20,17 @@ def add_to_cart(request, slug):
         if order.order_items.filter(item__slug=item.slug).exists():
             order_item.quantity += 1
             order_item.save()
-            messages.info(request, f"This {item.item_name} quantity was updated.")
+            messages.info(request, f"{item.item_name} quantity has been increased.")
             return redirect("cart-home")
         else:
             order.order_items.add(order_item)
-            messages.info(request, f"This {item.item_name} was added to your cart.")
+            messages.info(request, f"{item.item_name} has been added to your cart.")
             return redirect("landing_page")
     else:
         order = Order.objects.create(
             user=request.user)
         order.order_items.add(order_item)
-        messages.info(request, f"This {item.item_name} was added to your cart.")
+        messages.info(request, f"{item.item_name} has been added to your cart.")
         return redirect("landing_page")
 
 
@@ -55,10 +55,10 @@ def decrease_cart(request, slug):
             else:
                 order.order_items.remove(order_item)
                 order_item.delete()
-            messages.info(request, f"{item.item_name} quantity has updated.")
+            messages.info(request, f"{item.item_name} quantity has been decreased.")
             return redirect("cart-home")
         else:
-            messages.info(request, f"{item.item_name} quantity has updated.")
+            messages.info(request, f"{item.item_name} does not exist")
             return redirect("landing_page")
     else:
         messages.info(request, "You do not have an active order")
