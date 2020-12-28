@@ -50,7 +50,10 @@ class Brand(models.Model):
 
 
 class Category(models.Model):
+    category_choices = ['Uncategorised', 'Male', 'Female']
     category_name = models.CharField(max_length=20)
+    category_description = models.TextField(max_length=200, default="Enter Description")
+    slug = models.SlugField(null=True, unique=True)
 
     def __str__(self):
         return self.category_name
@@ -73,7 +76,7 @@ class Product(models.Model):
     item_categories = models.ForeignKey(
         Category, null=True, on_delete=models.CASCADE)
     item_image = models.ImageField(upload_to='images/product/',
-                                   default="images/product/image-placeholder-500x500.jpg")
+                                   default="images/product/zohari_image_placeholder.png")
 
     def get_absolute_url(self):
         return reverse('product-detail', args=[self.slug])
