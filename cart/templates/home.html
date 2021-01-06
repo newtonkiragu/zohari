@@ -30,20 +30,20 @@
                     <a class="ml-2" href="{% url 'add-to-cart' cart.item.slug %}"><span class="badge badge-light"><i
                                 class="fas fa-plus"></i></span></a>
                 </td>
-                <td>${{ cart.get_total }}</td>
+                <td>Kshs. {{ cart.get_total | floatformat:2 }}</td>
                 <td><a href="{% url 'remove-cart' cart.item.slug %}"><span class="ti-close" ></span></a></td>
             </tr>
             {% endfor %}
             {% endif %}
     <tr>
       <th scope="row"></th>
-      <td colspan="3">Total</td>
-      <td>${{ order.get_totals| floatformat:2 }}</td>
+      <td colspan="3"><strong>Total</strong></td>
+      <td><strong>Kshs. {{ order.get_totals | floatformat:2 }}</strong></td>
     </tr>
     <tr>
       <th scope="row"></th>
       <td colspan="4" class="text-right ">
-        <a href="{% url 'landing_page' %}" class="btn btn-warning mr-4" >Continue Shopping</a>
+        <a href="{% url 'product-list' %}" class="btn btn-warning mr-4" >Continue Shopping</a>
             <button class="btn btn-success mr-4">Proceed To Checkout</button>
             </td>
             </tr>

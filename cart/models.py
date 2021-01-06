@@ -35,3 +35,6 @@ class Order(models.Model):
             total += order_item.get_total()
 
         return total
+
+
+# TODO: create checkout that updates product item quantity and availability
